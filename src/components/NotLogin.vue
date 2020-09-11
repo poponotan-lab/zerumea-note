@@ -1,7 +1,10 @@
 <template>
     <div id="not-login">
-        <h1>{{msg}}</h1>
-        <button @click="googleLogin">Googleアカウントでログイン</button>
+        <div class="header-container">
+        
+            <h1 class="title">{{msg}}</h1>
+            <button @click="googleLogin">Googleアカウントでログイン</button>
+        </div>
     </div>
 </template>
 <script>
@@ -11,12 +14,9 @@ import firebase from 'firebase/app';
 export default {
 
     setup() {
-        const msg = ref("ゼルメアノートです。");
+        const msg = ref("ゼルメアノート");
 
         const googleLogin = () => {
-            console.log(firebase);
-            console.log(firebase.auth().signInWithRedirect);
-            console.log(new firebase.auth.GoogleAuthProvider());
             firebase.auth().signInWithRedirect(new firebase.auth.GoogleAuthProvider());
         }
 
@@ -27,3 +27,15 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+    }
+    .title {
+        font-size: 18px;
+        margin: 0px;
+        padding: 0px;
+    }
+</style>
