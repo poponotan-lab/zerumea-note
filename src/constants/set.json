@@ -6,6 +6,7 @@
         "head": true,
         "tops": true,
         "bottom": true,
+        
         "glove": true,
         "leg": true
     },

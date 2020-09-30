@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <NotLogin v-if="!isLogin"></NotLogin>
+    <NotLogin v-if="!isLogin && !isLogining" :try-login="tryLogin"></NotLogin>
+    <Logining v-if="!isLogin && isLogining" />
     <Home v-if="isLogin"></Home>
   </div>
 </template>
@@ -9,8 +10,9 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import NotLogin from './components/NotLogin.vue'
+import Logining from './components/Logining'
 import Home from './components/Home.vue'
-import { onMounted, ref } from 'vue';
+import { onMounted, reactive, toRefs } from 'vue';
 
 const firebaseConfig = {
     apiKey: "AIzaSyA-ZGkTcpzcVPS3qO052s6CigC2Jv4aft0",
@@ -24,32 +26,40 @@ const firebaseConfig = {
   };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-db.collection("users").get().then((querySnapshot) => {
-  querySnapshot.forEach((doc) => {
-    console.log(doc);
-  })
-})
+// const db = firebase.firestore();
+// db.collection("users").get().then((querySnapshot) => {
+//   querySnapshot.forEach((doc) => {
+//     console.log(doc);
+//   })
+// })
 
 export default {
     components: {
       NotLogin,
+      Logining,
       Home
     },
     setup() {
-      const isLogin = ref(false);
+      const data = reactive({
+        isLogin: false,
+        isLogining: false
+      })
+      const tryLogin = () => {
+        data.isLogining = true;
+      }
       onMounted(() => {
         firebase.auth().onAuthStateChanged(user => {
+           console.log("状態かわりましたよ");
            console.log(user);
            if (user) {
-             isLogin.value = true;
+             data.isLogin = true;
            } else {
-             isLogin.value = false;
+             data.isLogin = false;
            }
         })
       })
       return {
-        isLogin
+        ...toRefs(data), tryLogin
       }
     }
 }
@@ -59,11 +69,10 @@ export default {
 body {
   margin: 0;
   padding: 0;
-}
-#app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  color: #2c3e50;
-  margin: 0;
-  padding: 0;
+  color: #ffffff;
+  background-color: #2E3192;
 }
+
+
 </style>
