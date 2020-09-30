@@ -1,0 +1,481 @@
+[
+    {
+        "id": 0,
+        "name": "HP",
+        "parts": [
+            0
+        ],
+        "suffix": "",
+        "effect-value-type": 0
+    },
+    {
+        "id": 1,
+        "name": "MP",
+        "parts": [
+            0
+        ],
+        "suffix": "",
+        "effect-value-type": 1
+    },
+    {
+        "id": 2,
+        "name": "眠ガ",
+        "parts": [
+            0,
+            2
+        ],
+        "suffix": "%",
+        "effect-value-type": 2
+    },
+    {
+        "id": 3,
+        "name": "麻ガ",
+        "parts": [
+            0,
+            2
+        ],
+        "suffix": "%",
+        "effect-value-type": 2
+    },
+    {
+        "id": 4,
+        "name": "混ガ",
+        "parts": [
+            0,
+            2
+        ],
+        "suffix": "%",
+        "effect-value-type": 2
+    },
+    {
+        "id": 5,
+        "name": "封ガ",
+        "parts": [
+            0,
+            2
+        ],
+        "suffix": "%",
+        "effect-value-type": 2
+    },
+    {
+        "id": 6,
+        "name": "幻ガ",
+        "parts": [
+            0,
+            2
+        ],
+        "suffix": "%",
+        "effect-value-type": 2
+    },
+    {
+        "id": 7,
+        "name": "死ガ",
+        "parts": [
+            0,
+            1
+        ],
+        "suffix": "%",
+        "effect-value-type": 2
+    },
+    {
+        "id": 8,
+        "name": "怯ガ",
+        "parts": [
+            0
+        ],
+        "suffix": "%",
+        "effect-value-type": 3
+    },
+    {
+        "id": 9,
+        "name": "毒ガ",
+        "parts": [
+            0,
+            2
+        ],
+        "suffix": "%",
+        "effect-value-type": 2
+    },
+    {
+        "id": 10,
+        "name": "開ピ",
+        "parts": [
+            0
+        ],
+        "suffix": "%",
+        "effect-value-type": 4
+    },
+    {
+        "id": 11,
+        "name": "守",
+        "parts": [
+            1,
+            2
+        ],
+        "suffix": "",
+        "effect-value-type": 8
+    },
+    {
+        "id": 12,
+        "name": "ブレ",
+        "parts": [
+            1
+        ],
+        "suffix": "%",
+        "effect-value-type": 4
+    },
+    {
+        "id": 13,
+        "name": "攻魔",
+        "parts": [
+            1,
+            2
+        ],
+        "suffix": "",
+        "effect-value-type": 1
+    },
+    {
+        "id": 14,
+        "name": "回魔",
+        "parts": [
+            1,
+            2
+        ],
+        "suffix": "",
+        "effect-value-type": 1
+    },
+    {
+        "id": 15,
+        "name": "呪ダ減",
+        "parts": [
+            1
+        ],
+        "suffix": "",
+        "effect-value-type": 12
+    },
+    {
+        "id": 16,
+        "name": "呪ガ",
+        "parts": [
+            1
+        ],
+        "suffix": "",
+        "effect-value-type": 2
+    },
+    {
+        "id": 17,
+        "name": "重",
+        "parts": [
+            1,
+            4
+        ],
+        "suffix": "",
+        "effect-value-type": 1
+    },
+    {
+        "id": 18,
+        "name": "炎ダ",
+        "parts": [
+            1
+        ],
+        "suffix": "",
+        "effect-value-type": 5
+    },
+    {
+        "id": 19,
+        "name": "氷ダ",
+        "parts": [
+            1
+        ],
+        "suffix": "",
+        "effect-value-type": 5
+    },
+    {
+        "id": 20,
+        "name": "風ダ",
+        "parts": [
+            1
+        ],
+        "suffix": "",
+        "effect-value-type": 5
+    },
+    {
+        "id": 21,
+        "name": "雷ダ",
+        "parts": [
+            1
+        ],
+        "suffix": "",
+        "effect-value-type": 5
+    },
+    {
+        "id": 22,
+        "name": "土ダ",
+        "parts": [
+            1
+        ],
+        "suffix": "",
+        "effect-value-type": 5
+    },
+    {
+        "id": 23,
+        "name": "闇ダ",
+        "parts": [
+            1
+        ],
+        "suffix": "",
+        "effect-value-type": 5
+    },
+    {
+        "id": 24,
+        "name": "光ダ",
+        "parts": [
+            1
+        ],
+        "suffix": "",
+        "effect-value-type": 5
+    },
+    {
+        "id": 25,
+        "name": "開ス",
+        "parts": [
+            1
+        ],
+        "suffix": "%",
+        "effect-value-type": 4
+    },
+    {
+        "id": 25,
+        "name": "開マホ",
+        "parts": [
+            1
+        ],
+        "suffix": "%",
+        "effect-value-type": 4
+    },
+    {
+        "id": 26,
+        "name": "MPガ",
+        "parts": [
+            2
+        ],
+        "suffix": "%",
+        "effect-value-type": 2
+    },
+    {
+        "id": 27,
+        "name": "器用",
+        "parts": [
+            3
+        ],
+        "suffix": "",
+        "effect-value-type": 2
+    },
+    {
+        "id": 28,
+        "name": "会心",
+        "parts": [
+            3
+        ],
+        "suffix": "",
+        "effect-value-type": 6
+    },
+    {
+        "id": 29,
+        "name": "暴走",
+        "parts": [
+            3
+        ],
+        "suffix": "",
+        "effect-value-type": 6
+    },
+    {
+        "id": 30,
+        "name": "消費",
+        "parts": [
+            3
+        ],
+        "suffix": "",
+        "effect-value-type": 7
+    },
+    {
+        "id": 31,
+        "name": "呪発",
+        "parts": [
+            3
+        ],
+        "suffix": "",
+        "effect-value-type": 8
+    },
+    {
+        "id": 32,
+        "name": "ルカ",
+        "parts": [
+            3
+        ],
+        "suffix": "",
+        "effect-value-type": 9
+    },
+    {
+        "id": 33,
+        "name": "ヘナ",
+        "parts": [
+            3
+        ],
+        "suffix": "",
+        "effect-value-type": 9
+    },
+    {
+        "id": 34,
+        "name": "眠4",
+        "parts": [
+            3
+        ],
+        "suffix": "",
+        "effect-value-type": 9
+    },
+    {
+        "id": 35,
+        "name": "毒4",
+        "parts": [
+            3
+        ],
+        "suffix": "",
+        "effect-value-type": 9
+    },
+    {
+        "id": 36,
+        "name": "麻4",
+        "parts": [
+            3
+        ],
+        "suffix": "",
+        "effect-value-type": 9
+    },
+    {
+        "id": 37,
+        "name": "混4",
+        "parts": [
+            3
+        ],
+        "suffix": "",
+        "effect-value-type": 9
+    },
+    {
+        "id": 38,
+        "name": "幻4",
+        "parts": [
+            3
+        ],
+        "suffix": "",
+        "effect-value-type": 9
+    },
+    {
+        "id": 39,
+        "name": "魅4",
+        "parts": [
+            3
+        ],
+        "suffix": "",
+        "effect-value-type": 9
+    },
+    {
+        "id": 40,
+        "name": "マホ4",
+        "parts": [
+            3
+        ],
+        "suffix": "",
+        "effect-value-type": 9
+    },
+    {
+        "id": 41,
+        "name": "マホ4",
+        "parts": [
+            3
+        ],
+        "suffix": "",
+        "effect-value-type": 9
+    },
+    {
+        "id": 42,
+        "name": "通ド",
+        "parts": [
+            3
+        ],
+        "suffix": "",
+        "effect-value-type": 10
+    },
+    {
+        "id": 43,
+        "name": "レアド",
+        "parts": [
+            3
+        ],
+        "suffix": "",
+        "effect-value-type": 10
+    },
+    {
+        "id": 44,
+        "name": "すば",
+        "parts": [
+            4
+        ],
+        "suffix": "",
+        "effect-value-type": 1
+    },
+    {
+        "id": 45,
+        "name": "おしゃ",
+        "parts": [
+            4
+        ],
+        "suffix": "",
+        "effect-value-type": 1
+    },
+    {
+        "id": 46,
+        "name": "みか",
+        "parts": [
+            4
+        ],
+        "suffix": "",
+        "effect-value-type": 6
+    },
+    {
+        "id": 47,
+        "name": "転ガ",
+        "parts": [
+            4
+        ],
+        "suffix": "%",
+        "effect-value-type": 3
+    },
+    {
+        "id": 48,
+        "name": "踊ガ",
+        "parts": [
+            4
+        ],
+        "suffix": "%",
+        "effect-value-type": 3
+    },
+    {
+        "id": 49,
+        "name": "不意",
+        "parts": [
+            4
+        ],
+        "suffix": "",
+        "effect-value-type": 9
+    },
+    {
+        "id": 50,
+        "name": "移動",
+        "parts": [
+            4
+        ],
+        "suffix": "",
+        "effect-value-type": 10
+    }
+]

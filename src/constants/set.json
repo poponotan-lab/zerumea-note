@@ -1,0 +1,252 @@
+[
+    {
+        "set-id": 0,
+        "level": 96,
+        "jobs-set-type": 0,
+        "head": true,
+        "tops": true,
+        "bottom": true,
+        "glove": true,
+        "leg": true
+    },
+    {
+        "set-id": 1,
+        "level": 96,
+        "jobs-set-type": 1,
+        "head": true,
+        "tops": true,
+        "bottom": true,
+        "glove": true,
+        "leg": true
+    },
+    {
+        "set-id": 2,
+        "level": 96,
+        "jobs-set-type": 3,
+        "head": true,
+        "tops": true,
+        "bottom": true,
+        "glove": true,
+        "leg": true
+    },
+    {
+        "set-id": 3,
+        "level": 96,
+        "jobs-set-type": 2,
+        "head": true,
+        "tops": true,
+        "bottom": true,
+        "glove": true,
+        "leg": true
+    },
+    {
+        "set-id": 4,
+        "level": 96,
+        "jobs-set-type": 4,
+        "head": true,
+        "tops": true,
+        "bottom": true,
+        "glove": true,
+        "leg": true
+    },
+    {
+        "set-id": 5,
+        "level": 99,
+        "jobs-set-type": 0,
+        "head": true,
+        "tops": true,
+        "bottom": true,
+        "glove": true,
+        "leg": true
+    },
+    {
+        "set-id": 6,
+        "level": 99,
+        "jobs-set-type": 1,
+        "head": true,
+        "tops": true,
+        "bottom": false,
+        "glove": true,
+        "leg": true
+    },
+    {
+        "set-id": 7,
+        "level": 99,
+        "jobs-set-type": 2,
+        "head": true,
+        "tops": true,
+        "bottom": true,
+        "glove": true,
+        "leg": true
+    },
+    {
+        "set-id": 8,
+        "level": 99,
+        "jobs-set-type": 4,
+        "head": true,
+        "tops": true,
+        "bottom": true,
+        "glove": true,
+        "leg": true
+    },
+    {
+        "set-id": 9,
+        "level": 99,
+        "jobs-set-type": 3,
+        "head": true,
+        "tops": true,
+        "bottom": true,
+        "glove": false,
+        "leg": true
+    },
+    {
+        "set-id": 10,
+        "level": 100,
+        "jobs-set-type": 0,
+        "head": true,
+        "tops": true,
+        "bottom": true,
+        "glove": true,
+        "leg": true
+    },
+    {
+        "set-id": 11,
+        "level": 100,
+        "jobs-set-type": 1,
+        "head": true,
+        "tops": true,
+        "bottom": true,
+        "glove": true,
+        "leg": true
+    },
+    {
+        "set-id": 12,
+        "level": 100,
+        "jobs-set-type": 2,
+        "head": true,
+        "tops": true,
+        "bottom": true,
+        "glove": true,
+        "leg": true
+    },
+    {
+        "set-id": 13,
+        "level": 100,
+        "jobs-set-type": 4,
+        "head": true,
+        "tops": true,
+        "bottom": true,
+        "glove": true,
+        "leg": true
+    },
+    {
+        "set-id": 14,
+        "level": 100,
+        "jobs-set-type": 3,
+        "head": true,
+        "tops": true,
+        "bottom": true,
+        "glove": true,
+        "leg": true
+    },
+    {
+        "set-id": 15,
+        "level": 105,
+        "jobs-set-type": 0,
+        "head": true,
+        "tops": true,
+        "bottom": true,
+        "glove": true,
+        "leg": true
+    },
+    {
+        "set-id": 16,
+        "level": 105,
+        "jobs-set-type": 1,
+        "head": true,
+        "tops": true,
+        "bottom": true,
+        "glove": false,
+        "leg": true
+    },
+    {
+        "set-id": 17,
+        "level": 105,
+        "jobs-set-type": 2,
+        "head": true,
+        "tops": true,
+        "bottom": true,
+        "glove": true,
+        "leg": true
+    },
+    {
+        "set-id": 18,
+        "level": 105,
+        "jobs-set-type": 4,
+        "head": true,
+        "tops": true,
+        "bottom": true,
+        "glove": true,
+        "leg": true
+    },
+    {
+        "set-id": 19,
+        "level": 105,
+        "jobs-set-type": 3,
+        "head": true,
+        "tops": true,
+        "bottom": true,
+        "glove": true,
+        "leg": true
+    },
+    {
+        "set-id": 20,
+        "level": 108,
+        "jobs-set-type": 0,
+        "head": true,
+        "tops": true,
+        "bottom": true,
+        "glove": true,
+        "leg": true
+    },
+    {
+        "set-id": 21,
+        "level": 108,
+        "jobs-set-type": 1,
+        "head": true,
+        "tops": true,
+        "bottom": false,
+        "glove": true,
+        "leg": true
+    },
+    {
+        "set-id": 22,
+        "level": 108,
+        "jobs-set-type": 2,
+        "head": true,
+        "tops": true,
+        "bottom": true,
+        "glove": true,
+        "leg": true
+    },
+    {
+        "set-id": 23,
+        "level": 108,
+        "jobs-set-type": 4,
+        "head": true,
+        "tops": true,
+        "bottom": true,
+        "glove": true,
+        "leg": true
+    },
+    {
+        "set-id": 24,
+        "level": 108,
+        "jobs-set-type": 3,
+        "head": true,
+        "tops": true,
+        "bottom": false,
+        "glove": true,
+        "leg": true
+    }
+]

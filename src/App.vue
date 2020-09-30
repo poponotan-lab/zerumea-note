@@ -22,8 +22,14 @@ const firebaseConfig = {
     appId: "1:708041806348:web:93552d76eff79cf3649429",
     measurementId: "G-MREQR2J3LJ"
   };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+db.collection("users").get().then((querySnapshot) => {
+  querySnapshot.forEach((doc) => {
+    console.log(doc);
+  })
+})
 
 export default {
     components: {
