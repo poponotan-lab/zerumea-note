@@ -17,7 +17,63 @@
                 <v-check-box class="level-button" v-for="jobSet in jobSetType" :id="`job-set-${jobSet.id}`" :key="`job-set-${jobSet.id}`" :title="jobSet.name">
                 </v-check-box>
             </div>
-        </div>   
+        </div>
+        <div class="item-list-container">
+            <div class="item-container">
+                <div class="item-part-title">
+                    頭
+                </div>
+                <div class="item-line-parent">
+                    <div class="item-line">
+                        <div class="item">
+                            <div class="item-name">風のマント</div>
+                            <div class="item-value">AAA:bbb</div>
+                            <div class="item-value">AAA:bbb</div>
+                            <div class="item-value">AAA:bbb</div>
+                        </div>
+                        <div class="item">
+                            <div class="item-name">風のマント</div>
+                            <div class="item-value">AAA:bbb</div>
+                            <div class="item-value">AAA:bbb</div>
+                            <div class="item-value">AAA:bbb</div>
+                        </div>
+                        <div class="item">
+                            <div class="item-name">風のマント</div>
+                            <div class="item-value">AAA:bbb</div>
+                            <div class="item-value">AAA:bbb</div>
+                            <div class="item-value">AAA:bbb</div>
+                        </div>
+                        <div class="item">
+                            <div class="item-name">風のマント</div>
+                            <div class="item-value">AAA:bbb</div>
+                            <div class="item-value">AAA:bbb</div>
+                            <div class="item-value">AAA:bbb</div>
+                        </div>
+                    </div>
+                    <div class="add-button-area">
+                        +
+                    </div>
+                </div>
+            </div>
+            <div class="item-container">
+                <div class="item-part-title">
+                    体上
+                </div>
+                <div class="item-line-parent">
+                    <div class="item-line">
+                        <div class="item">
+                            <div class="item-name">風のマント</div>
+                            <div class="item-value">AAA:bbb</div>
+                            <div class="item-value">AAA:bbb</div>
+                            <div class="item-value">AAA:bbb</div>
+                        </div>
+                    </div>
+                    <div class="add-button-area">
+                        +
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -78,6 +134,75 @@ export default {
 .level-buttons-container {
     display: flex;
     margin-bottom: 4px;
+}
+
+.item-list-container {
+    background: #ffffff;
+    margin: 4px 12px;
+    border-radius: 6px;
+}
+
+.item-container {
+    background: #2E3192;
+    padding: 4px;
+    border-radius: 12px;
+    border: solid 4px #ffffff;
+    display: flex;
+}
+
+.item-line-parent {
+    display: flex;
+    width: 100%;
+}
+
+.item-line {
+    background: #ffffff;
+    width: 100%;
+    display: flex;
+    border-radius: 6px;
+    height: 80px;
+    padding: 4px;
+}
+
+.item-part-title {
+    writing-mode: vertical-rl;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+.item {
+    flex: 0 0 48px;
+    min-width: 88px;
+    height: 70px;
+    margin: 4px;
+    border-radius: 6px;
+    background: #ffffff;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, .5));
+    color: #333333;
+}
+
+.item-name {
+    font-size: 13px;
+    padding-left: 4px
+}
+
+.item-value {
+    font-size: 11px;
+    text-align: right;
+    padding-right: 4px;
+}
+
+.add-button-area {
+    position: absolute;
+    background: rgba(0, 113, 188, .5);
+    width: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 88px;
+    right: 20px;
 }
 
 </style>
