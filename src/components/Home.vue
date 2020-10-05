@@ -152,7 +152,7 @@ export default {
 
 .item-line-parent {
     display: flex;
-    width: 100%;
+    width: 90%;
 }
 
 .item-line {
@@ -162,6 +162,7 @@ export default {
     border-radius: 6px;
     height: 80px;
     padding: 4px;
+    overflow-x: auto;
 }
 
 .item-part-title {
