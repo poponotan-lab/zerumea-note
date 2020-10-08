@@ -25,6 +25,56 @@
             <ItemContainer />
             <ItemContainer />
         </div>
+        <div class="effects-container">
+            <div class="effects-info">
+                <div class="effects-title">幻惑</div>
+                <div class="effects-value">100%</div>
+            </div>
+            <div class="effects-info">
+                <div class="effects-title">回魔</div>
+                <div class="effects-value">45</div>
+            </div>
+            <div class="effects-info">
+                <div class="effects-title">眠</div>
+                <div class="effects-value">100%</div>
+            </div>
+            <div class="effects-info">
+                <div class="effects-title">即死</div>
+                <div class="effects-value">90%</div>
+            </div>
+            <div class="effects-info">
+                <div class="effects-title">回魔</div>
+                <div class="effects-value">45</div>
+            </div>
+            <div class="effects-info">
+                <div class="effects-title">重さ</div>
+                <div class="effects-value">45</div>
+            </div>
+            <div class="effects-info">
+                <div class="effects-title">転び</div>
+                <div class="effects-value">100%</div>
+            </div>
+            <div class="effects-info">
+                <div class="effects-title">転び</div>
+                <div class="effects-value">100%</div>
+            </div>
+            <div class="effects-info">
+                <div class="effects-title">転び</div>
+                <div class="effects-value">100%</div>
+            </div>
+            <div class="effects-info">
+                <div class="effects-title">転び</div>
+                <div class="effects-value">100%</div>
+            </div>
+            <div class="effects-info">
+                <div class="effects-title">転び</div>
+                <div class="effects-value">100%</div>
+            </div>
+            <div class="effects-info">
+                <div class="effects-title">転び</div>
+                <div class="effects-value">100%</div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -93,6 +143,26 @@ export default {
     background: #ffffff;
     margin: 4px 12px;
     border-radius: 6px;
+}
+
+.effects-container {
+    background: #2e3192;
+    margin: 4px 12px;
+    padding: 12px;
+    border-radius: 6px;
+    border: white solid 4px;
+    height: 120px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.effects-info {
+    display: flex;
+    height: 21px;
+    border-right: #999999 solid 1px;
+    justify-content: space-between;
+    padding: 4px 8px;
 }
 
 </style>
