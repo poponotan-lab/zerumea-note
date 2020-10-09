@@ -1,7 +1,7 @@
 <template>
     <div class="item-container">
         <div class="item-part-title">
-            頭
+            {{ part.name }}
         </div>
         <div class="item-line-parent">
             <div class="item-line">
@@ -12,7 +12,9 @@
                 <Item />
             </div>
             <div class="add-button-area">
+                <button class="add-button">
                 +
+                </button>
             </div>
         </div>
     </div>
@@ -22,6 +24,9 @@
 import Item from './Item';
 
 export default {
+    props: {
+        part: Object
+    },
     components: {
       Item
     }
@@ -69,6 +74,17 @@ export default {
     align-items: center;
     height: 88px;
     right: 20px;
+}
+
+.add-button {
+    background: #0071BC;
+    border-radius: 16px;
+    border: none;
+    color: white;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;;
 }
 
 </style>

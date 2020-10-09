@@ -19,11 +19,7 @@
             </div>
         </div>
         <div class="item-list-container">
-            <ItemContainer />
-            <ItemContainer />
-            <ItemContainer />
-            <ItemContainer />
-            <ItemContainer />
+            <ItemContainer v-for="part in partType" :key="part.id" :part="part" />
         </div>
         <div class="effects-container">
             <div class="effects-info">
@@ -82,6 +78,7 @@
 import firebase from 'firebase/app';
 import levels from '../constants/levels.json';
 import jobSetType from '../constants/job-set-type.json';
+import partType from '../constants/part-type.json';
 import VCheckBox from './VCheckBox';
 import ItemContainer from './ItemContainer';
 
@@ -101,7 +98,8 @@ export default {
         return {
             googleLogout,
             levels,
-            jobSetType
+            jobSetType,
+            partType
         }
     }
 }
