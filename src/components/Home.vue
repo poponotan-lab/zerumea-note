@@ -7,14 +7,14 @@
         <div class="level-choice-container">
             <div class="level-choice-title">装備レベル</div>
             <div class="level-buttons-container">
-                <v-check-box class="level-button" v-for="level in levels" :id="`level-${level}`" :key="`level-${level}`" :title="level">
+                <v-check-box class="level-button" v-for="level in levels" :id="`level-${level}`" :key="`level-${level}`" :title="level" :onSelect="onSelectLevel">
                 </v-check-box>
             </div>
         </div>
         <div class="job-choice-container">
             <div class="level-choice-title">職業</div>
             <div class="level-buttons-container">
-                <v-check-box class="level-button" v-for="jobSet in jobSetType" :id="`job-set-${jobSet.id}`" :key="`job-set-${jobSet.id}`" :title="jobSet.name">
+                <v-check-box class="level-button" v-for="jobSet in jobSetType" :id="`job-set-${jobSet.id}`" :key="`job-set-${jobSet.id}`" :title="jobSet.name" :onSelect="onSelectJob">
                 </v-check-box>
             </div>
         </div>
@@ -22,54 +22,14 @@
             <ItemContainer v-for="part in partType" :key="part.id" :part="part" />
         </div>
         <div class="effects-container">
-            <div class="effects-info">
-                <div class="effects-title">幻惑</div>
-                <div class="effects-value">100%</div>
-            </div>
-            <div class="effects-info">
-                <div class="effects-title">回魔</div>
-                <div class="effects-value">45</div>
-            </div>
-            <div class="effects-info">
-                <div class="effects-title">眠</div>
-                <div class="effects-value">100%</div>
-            </div>
-            <div class="effects-info">
-                <div class="effects-title">即死</div>
-                <div class="effects-value">90%</div>
-            </div>
-            <div class="effects-info">
-                <div class="effects-title">回魔</div>
-                <div class="effects-value">45</div>
-            </div>
-            <div class="effects-info">
-                <div class="effects-title">重さ</div>
-                <div class="effects-value">45</div>
-            </div>
-            <div class="effects-info">
-                <div class="effects-title">転び</div>
-                <div class="effects-value">100%</div>
-            </div>
-            <div class="effects-info">
-                <div class="effects-title">転び</div>
-                <div class="effects-value">100%</div>
-            </div>
-            <div class="effects-info">
-                <div class="effects-title">転び</div>
-                <div class="effects-value">100%</div>
-            </div>
-            <div class="effects-info">
-                <div class="effects-title">転び</div>
-                <div class="effects-value">100%</div>
-            </div>
-            <div class="effects-info">
-                <div class="effects-title">転び</div>
-                <div class="effects-value">100%</div>
-            </div>
-            <div class="effects-info">
-                <div class="effects-title">転び</div>
-                <div class="effects-value">100%</div>
-            </div>
+            <EffectInfo :effectTypeId="0" :effectValue="'18'"/>
+            <EffectInfo :effectTypeId="1" :effectValue="'45'"/>
+            <EffectInfo :effectTypeId="2" :effectValue="'100％'"/>
+            <EffectInfo :effectTypeId="1" :effectValue="'45'"/>
+            <EffectInfo :effectTypeId="1" :effectValue="'45'"/>
+            <EffectInfo :effectTypeId="1" :effectValue="'45'"/>
+            <EffectInfo :effectTypeId="1" :effectValue="'45'"/>
+            <EffectInfo :effectTypeId="1" :effectValue="'45'"/>
         </div>
     </div>
 </template>
@@ -81,11 +41,13 @@ import jobSetType from '../constants/job-set-type.json';
 import partType from '../constants/part-type.json';
 import VCheckBox from './VCheckBox';
 import ItemContainer from './ItemContainer';
+import EffectInfo from './EffectInfo';
 
 export default {
     components: {
       VCheckBox,
-      ItemContainer
+      ItemContainer,
+      EffectInfo
     },
     setup() {
         const googleLogout = () => {
@@ -95,11 +57,33 @@ export default {
                 alert('sign out error.', error);
             })
         }
+        // 表示レベル
+        const selectedLevels = [];
+        // 表示職業
+        const selectedJobs = [];
+        const onSelectLevel = (level) => {
+            if (selectedLevels.includes(level)) {
+                selectedLevels.splice(selectedLevels.indexOf(level), 1);
+            } else {
+                selectedLevels.push(level);
+            }
+        }
+        const onSelectJob = (job) => {
+            if (selectedJobs.includes(job)) {
+                selectedJobs.splice(selectedJobs.indexOf(job), 1);
+            } else {
+                selectedJobs.push(job);
+            }
+        }
         return {
             googleLogout,
             levels,
             jobSetType,
-            partType
+            partType,
+            selectedLevels,
+            selectedJobs,
+            onSelectLevel,
+            onSelectJob
         }
     }
 }
@@ -155,12 +139,6 @@ export default {
     flex-direction: column;
 }
 
-.effects-info {
-    display: flex;
-    height: 21px;
-    border-right: #999999 solid 1px;
-    justify-content: space-between;
-    padding: 4px 8px;
-}
+
 
 </style>

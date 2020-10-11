@@ -1,15 +1,16 @@
 <template>
-    <input type="checkbox" class="check_box" :id="checkBoxId" />
+    <input type="checkbox" class="check_box" :id="checkBoxId" @click="handleSelect(checkBoxId)" />
     <label class="label" :for="checkBoxId">{{ checkBoxTitle }} </label>
 </template>
 
 <script>
 export default {
-      props: ['id', 'key', 'title'],
+      props: ['id', 'key', 'title', 'onSelect'],
       setup(props) {
         return {
           checkBoxId: props.id,
-          checkBoxTitle: props.title
+          checkBoxTitle: props.title,
+          handleSelect: props.onSelect
         }
       }
 }
