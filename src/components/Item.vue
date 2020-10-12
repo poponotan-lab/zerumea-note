@@ -59,12 +59,14 @@ export default {
   font-size: 13px;
   padding-left: 4px;
   white-space: nowrap;
+  height: 16px;
 }
 
 .item-value {
   font-size: 11px;
   text-align: right;
   padding-right: 4px;
+  height: 14px;
 }
 
 .active {
