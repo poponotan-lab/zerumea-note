@@ -53,16 +53,16 @@ const testData = [
     {
         itemId: 0,
         effect1: { effectId: 0, value: 10},
-        effect2: { effectId: 0, value: 10},
-        effect3: { effectId: 0, value: 10},
+        effect2: { effectId: 1, value: 10},
+        effect3: { effectId: 2, value: 10},
         setTypeId: 0,
         partTypeId: 0
     },
     {
         itemId: 1,
-        effect1: { effectId: 0, value: 10},
-        effect2: { effectId: 0, value: 10},
-        effect3: { effectId: 0, value: 10},
+        effect1: { effectId: 3, value: 10},
+        effect2: { effectId: 4, value: 10},
+        effect3: { effectId: 5, value: 10},
         setTypeId: 0,
         partTypeId: 0
     },
