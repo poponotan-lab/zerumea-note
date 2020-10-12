@@ -46,9 +46,10 @@ export default {
   flex: 0 0 48px;
   min-width: 88px;
   height: 70px;
-  margin: 4px;
+  margin: 2px;
   border-radius: 6px;
   background: #ffffff;
+  border: solid 1px #aaaaaa;
   filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
   color: #333333;
   overflow: hidden;
