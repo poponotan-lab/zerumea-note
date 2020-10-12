@@ -19,7 +19,12 @@
             </div>
         </div>
         <div class="item-list-container">
-            <ItemContainer v-for="part in partType" :key="part.id" :part="part" />
+            <ItemContainer v-for="part in partType" 
+                :key="part.id" 
+                :part="part" 
+                :onSelectItem="onSelectItem" 
+                :items="items" 
+                :selectedItems="selectedItems"/>
         </div>
         <div class="effects-container">
             <EffectInfo :effectTypeId="0" :effectValue="'18'"/>
@@ -42,6 +47,34 @@ import partType from '../constants/part-type.json';
 import VCheckBox from './VCheckBox';
 import ItemContainer from './ItemContainer';
 import EffectInfo from './EffectInfo';
+import { reactive, toRefs } from 'vue';
+
+const testData = [
+    {
+        itemId: 0,
+        effect1: { effectId: 0, value: 10},
+        effect2: { effectId: 0, value: 10},
+        effect3: { effectId: 0, value: 10},
+        setTypeId: 0,
+        partTypeId: 0
+    },
+    {
+        itemId: 1,
+        effect1: { effectId: 0, value: 10},
+        effect2: { effectId: 0, value: 10},
+        effect3: { effectId: 0, value: 10},
+        setTypeId: 0,
+        partTypeId: 0
+    },
+    {
+        itemId: 2,
+        effect1: { effectId: 0, value: 10},
+        effect2: { effectId: 0, value: 10},
+        effect3: { effectId: 0, value: 10},
+        setTypeId: 0,
+        partTypeId: 0
+    }
+]
 
 export default {
     components: {
@@ -57,33 +90,45 @@ export default {
                 alert('sign out error.', error);
             })
         }
-        // 表示レベル
-        const selectedLevels = [];
-        // 表示職業
-        const selectedJobs = [];
+        const data = reactive({
+            selectedLevels: [],
+            selectedJobs: [],
+            selectedItems: [null, null, null, null, null],
+            items: testData
+        });
+        const onSelectItem = (id, value) => {
+            data.selectedItems[id] = value;
+            console.log(id, value);
+            console.log(data.selectedItems)
+        }
+        const clearSelectItems = () => {
+            data.selectedItems = [null, null, null, null, null];
+        }
         const onSelectLevel = (level) => {
-            if (selectedLevels.includes(level)) {
-                selectedLevels.splice(selectedLevels.indexOf(level), 1);
+            if (data.selectedLevels.includes(level)) {
+                data.selectedLevels.splice(data.selectedLevels.indexOf(level), 1);
             } else {
-                selectedLevels.push(level);
+                data.selectedLevels.push(level);
             }
+            clearSelectItems();
         }
         const onSelectJob = (job) => {
-            if (selectedJobs.includes(job)) {
-                selectedJobs.splice(selectedJobs.indexOf(job), 1);
+            if (data.selectedJobs.includes(job)) {
+                data.selectedJobs.splice(data.selectedJobs.indexOf(job), 1);
             } else {
-                selectedJobs.push(job);
+                data.selectedJobs.push(job);
             }
+            clearSelectItems();
         }
         return {
+            ...toRefs(data),
             googleLogout,
             levels,
             jobSetType,
             partType,
-            selectedLevels,
-            selectedJobs,
             onSelectLevel,
-            onSelectJob
+            onSelectJob,
+            onSelectItem
         }
     }
 }

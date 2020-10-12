@@ -5,11 +5,12 @@
         </div>
         <div class="item-line-parent">
             <div class="item-line">
-                <Item />
-                <Item />
-                <Item />
-                <Item />
-                <Item />
+                <Item v-for="item in items" 
+                    :key="item.itemId" 
+                    :partId="part.id" 
+                    :onSelectItem="onSelectItem" 
+                    :item="item"
+                    :selectedItemId="selectedItems[part.id]"/>
             </div>
             <div class="add-button-area">
                 <button class="add-button">
@@ -25,7 +26,10 @@ import Item from './Item';
 
 export default {
     props: {
-        part: Object
+        part: Object,
+        onSelectItem: Function,
+        items: Array,
+        selectedItems: Array
     },
     components: {
       Item
