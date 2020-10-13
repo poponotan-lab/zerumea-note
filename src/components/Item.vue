@@ -2,6 +2,7 @@
   <div
     class="item"
     @click="handleClick"
+    @dblclick="handleDblClick"
     :class="{ active: item.itemId === selectedItemId }"
   >
     <div class="item-name">{{ name }}</div>
@@ -30,12 +31,16 @@ export default {
     const effect1 = effectType.find((i) => i.id === props.item.effect1.effectId);
     const effect2 = effectType.find((i) => i.id === props.item.effect2.effectId);
     const effect3 = effectType.find((i) => i.id === props.item.effect3.effectId);
+    const handleDblClick = () => {
+        alert("ダブルクリックしました。");
+    }
     return {
       name: name,
       effect1: effect1,
       effect2: effect2,
       effect3: effect3,
       handleClick,
+      handleDblClick
     };
   },
 };
