@@ -36,6 +36,9 @@
             <EffectInfo :effectTypeId="1" :effectValue="'45'"/>
             <EffectInfo :effectTypeId="1" :effectValue="'45'"/>
         </div>
+        <div v-if="isShowDialog" class="dialog-container">
+            <Edit />
+        </div>
     </div>
 </template>
 
@@ -47,6 +50,7 @@ import partType from '../constants/part-type.json';
 import VCheckBox from './VCheckBox';
 import ItemContainer from './ItemContainer';
 import EffectInfo from './EffectInfo';
+import Edit from './Edit';
 import { reactive, toRefs } from 'vue';
 
 const testData = [
@@ -80,7 +84,8 @@ export default {
     components: {
       VCheckBox,
       ItemContainer,
-      EffectInfo
+      EffectInfo,
+      Edit
     },
     setup() {
         const googleLogout = () => {
@@ -94,7 +99,8 @@ export default {
             selectedLevels: [],
             selectedJobs: [],
             selectedItems: [null, null, null, null, null],
-            items: testData
+            items: testData,
+            isShowDialog: true
         });
         const onSelectItem = (id, value) => {
             data.selectedItems[id] = value;
@@ -184,6 +190,17 @@ export default {
     flex-direction: column;
 }
 
+.main-container {
+    position: relative;
+}
 
+.dialog-container {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
 
 </style>
