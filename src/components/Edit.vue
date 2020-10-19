@@ -3,7 +3,7 @@
         <div class="target-input-container">
             <div class="part-name">頭</div>
             <div class="select-container">
-                <span>level:</span>
+                <span>lv:</span>
                 <select>
                     <option>93</option>
                     <option>96</option>
@@ -13,12 +13,11 @@
                 </select>
             </div>
             <div class="select-container">
-                <span>set:</span>
                 <select>
                     <option>ミラーアーマー</option>
                     <option>ミラーアーマー</option>
                     <option>カテドラル</option>
-                    <option>エトワール</option>
+                    <option>エトワールコート</option>
                     <option>風虎</option>
                 </select>
             </div>
@@ -56,6 +55,11 @@
             <button>＋</button>
             <div class="effect-value">60%</div>
         </div>
+        <div class="button-container">
+            <button>削除</button>
+            <button>キャンセル</button>
+            <button>OK</button>
+        </div>
     </div>
 </template>
 
@@ -66,7 +70,7 @@
     border-radius: 12px;
     color: #333333;
     margin: 30px;
-    width: 320px;
+    width: 280px;
     padding: 12px;
 }
 
@@ -75,7 +79,7 @@
 }
 
 .select-container {
-    margin: 0px 12px;
+    margin: 0px 8px;
 }
 
 .part-name {
@@ -86,11 +90,18 @@
 .effect-input-container {
     display: flex;
     justify-content: space-between;
-    height: 30px;
-    padding: 8px;
+    height: 24px;
+    padding: 4px;
 }
 
 .effect-value {
-    font-size: 24px;
+    font-size: 18px;
+}
+
+.button-container {
+    padding-top: 12px;
+    margin: 0 12px;
+    display: flex;
+    justify-content: space-between;
 }
 </style>
