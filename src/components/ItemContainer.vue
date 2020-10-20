@@ -10,10 +10,11 @@
                     :partId="part.id" 
                     :onSelectItem="onSelectItem" 
                     :item="item"
-                    :selectedItemId="selectedItems[part.id]"/>
+                    :selectedItemId="selectedItems[part.id]"
+                    :editItem="editItem"/>
             </div>
             <div class="add-button-area">
-                <button class="add-button">
+                <button class="add-button" @click="handleClick">
                 +
                 </button>
             </div>
@@ -29,10 +30,21 @@ export default {
         part: Object,
         onSelectItem: Function,
         items: Array,
-        selectedItems: Array
+        selectedItems: Array,
+        addClick: Function,
+        editItem: Function
     },
     components: {
       Item
+    },
+    setup(props) {
+        const handleClick = () => {
+            props.addClick(props.part.id);
+        }
+
+        return {
+            handleClick: handleClick
+        }
     }
 }
 </script>

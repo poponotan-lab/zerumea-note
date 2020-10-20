@@ -7,7 +7,7 @@
         <div class="level-choice-container">
             <div class="level-choice-title">装備レベル</div>
             <div class="level-buttons-container">
-                <v-check-box class="level-button" v-for="level in levels" :id="`level-${level}`" :key="`level-${level}`" :title="level" :onSelect="onSelectLevel">
+                <v-check-box class="level-button" v-for="level in levels" :id="level" :key="level" :title="level" :onSelect="onSelectLevel">
                 </v-check-box>
             </div>
         </div>
@@ -24,7 +24,10 @@
                 :part="part" 
                 :onSelectItem="onSelectItem" 
                 :items="items" 
-                :selectedItems="selectedItems"/>
+                :selectedItems="selectedItems"
+                :editItem="editItem"
+                :addClick="addClick"
+                />
         </div>
         <div class="effects-container">
             <EffectInfo :effectTypeId="0" :effectValue="'18'"/>
@@ -37,7 +40,16 @@
             <EffectInfo :effectTypeId="1" :effectValue="'45'"/>
         </div>
         <div v-if="isShowDialog" class="dialog-container">
-            <Edit />
+            <Edit 
+                :partId="targetPartId" 
+                :defaultLevel="defaultLevel"
+                :defaultEffect1="defaultEffect1" 
+                :defaultEffect2="defaultEffect2"  
+                :defaultEffect3="defaultEffect3"
+                :onDelete="onDelete"
+                :onCancel="onCancel"
+                :onOk="onOk"
+                />
         </div>
     </div>
 </template>
@@ -100,7 +112,11 @@ export default {
             selectedJobs: [],
             selectedItems: [null, null, null, null, null],
             items: testData,
-            isShowDialog: true
+            isShowDialog: false,
+            targetPartId: "",
+            defaultEffect1: "",
+            defaultEffect2: "",
+            defaultEffect3: ""
         });
         const onSelectItem = (id, value) => {
             data.selectedItems[id] = value;
@@ -126,6 +142,33 @@ export default {
             }
             clearSelectItems();
         }
+
+        const addClick = (partId) => {
+            data.targetPartId = partId;
+            data.isShowDialog = true;
+            data.defaultEffect1 = "";
+            data.defaultEffect2 = "";
+            data.defaultEffect3 = "";
+        }
+
+        const onDelete = () => {
+            // TODO: 実装
+            data.isShowDialog = false;
+        }
+
+        const onCancel = () => {
+            // TODO: 実装
+            data.isShowDialog = false;
+        }
+        const onOk = () => {
+            // TODO: 実装
+            data.isShowDialog = false;
+        }
+
+        const editItem = () => {
+            data.isShowDialog = true;
+        }
+
         return {
             ...toRefs(data),
             googleLogout,
@@ -134,7 +177,12 @@ export default {
             partType,
             onSelectLevel,
             onSelectJob,
-            onSelectItem
+            onSelectItem,
+            addClick,
+            onDelete,
+            onCancel,
+            onOk,
+            editItem
         }
     }
 }
@@ -146,12 +194,13 @@ export default {
     padding: 4px 12px;
 }
 .chara-name {
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .logout-button {
     height: 20px;
-    font-size: 11px;
+    font-size: 16px;
+    transform: scale(calc(11 / 16));
     background-color: lightblue;
 }
 

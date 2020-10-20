@@ -22,6 +22,7 @@ export default {
     item: Object,
     onSelectItem: Function,
     selectedItemId: Number,
+    editItem: Function
   },
   setup(props) {
     const handleClick = () => {
@@ -32,7 +33,7 @@ export default {
     const effect2 = effectType.find((i) => i.id === props.item.effect2.effectId);
     const effect3 = effectType.find((i) => i.id === props.item.effect3.effectId);
     const handleDblClick = () => {
-        alert("ダブルクリックしました。");
+        props.editItem();
     }
     return {
       name: name,
@@ -61,14 +62,16 @@ export default {
 .item-name {
   min-width: 84px;
   overflow: hidden;
-  font-size: 13px;
+  font-size: 16px;
+  transform: scale(calc(12 / 16));
   padding-left: 4px;
   white-space: nowrap;
-  height: 16px;
+  height: 18px;
 }
 
 .item-value {
-  font-size: 11px;
+  font-size: 16px;
+  transform: scale(calc(11 / 16));
   text-align: right;
   padding-right: 4px;
   height: 14px;
