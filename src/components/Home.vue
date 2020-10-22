@@ -14,7 +14,7 @@
         <div class="job-choice-container">
             <div class="level-choice-title">職業</div>
             <div class="level-buttons-container">
-                <v-check-box class="level-button" v-for="jobSet in jobSetType" :id="`job-set-${jobSet.id}`" :key="`job-set-${jobSet.id}`" :title="jobSet.name" :onSelect="onSelectJob">
+                <v-check-box class="level-button" v-for="jobSet in jobSetType" :id="`${jobSet.id}`" :key="`${jobSet.id}`" :title="jobSet.name" :onSelect="onSelectJob">
                 </v-check-box>
             </div>
         </div>
@@ -23,7 +23,7 @@
                 :key="part.id" 
                 :part="part" 
                 :onSelectItem="onSelectItem" 
-                :items="items" 
+                :items="filteredItems" 
                 :selectedItems="selectedItems"
                 :editItem="editItem"
                 :addClick="addClick"
@@ -56,11 +56,12 @@ import firebase from 'firebase/app';
 import levels from '../constants/levels.json';
 import jobSetType from '../constants/job-set-type.json';
 import partType from '../constants/part-type.json';
+import sets from '../constants/set.json';
 import VCheckBox from './VCheckBox';
 import ItemContainer from './ItemContainer';
 import EffectInfo from './EffectInfo';
 import Edit from './Edit';
-import { reactive, toRefs } from 'vue';
+import { computed, reactive, toRefs } from 'vue';
 import { getNewItem } from '../utils'
 // test data
 import { testData } from '../testdata';
@@ -69,10 +70,10 @@ import { testData } from '../testdata';
 
 export default {
     components: {
-      VCheckBox,
-      ItemContainer,
-      EffectInfo,
-      Edit
+        VCheckBox,
+        ItemContainer,
+        EffectInfo,
+        Edit
     },
     setup() {
         const googleLogout = () => {
@@ -94,6 +95,28 @@ export default {
         const onSelectItem = (id, value) => {
             data.selectedItems[id] = value;
         }
+        const filteredItems = computed(() => {
+            if (data.selectedLevels.length === 0 && data.selectedJobs.length === 0) {
+                return data.items;
+            }
+            if (data.items == null) {
+                return data.items;
+            }
+            return data.items.filter((i) => {
+                const targetSet = sets.find(s => i.setTypeId === s["set-id"]);
+                const setLevel = targetSet.level;
+                // 選択レベル対象外の場合は除外
+                if (!data.selectedLevels.includes(setLevel)) {
+                    return false;
+                }
+                // 選択職対象外の場合は除外
+                const jobSetType = "" + targetSet["jobs-set-type"];
+                if (!data.selectedJobs.includes(jobSetType)) {
+                    return false;
+                }
+                return true;
+            })
+        })
         const clearSelectItems = () => {
             data.selectedItems = [null, null, null, null, null];
         }
@@ -155,7 +178,8 @@ export default {
             onDelete,
             onCancel,
             onOk,
-            editItem
+            editItem,
+            filteredItems
         }
     }
 }

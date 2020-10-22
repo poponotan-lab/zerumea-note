@@ -18,28 +18,28 @@
             <select v-model="selectedEffectId1" @change="handleChangeEffect1">
                 <option v-for="effectOption in effectOptions" :key="effectOption.id" :value="effectOption.id">{{ effectOption.name }}</option>
             </select>
-            <button>成功</button>
-            <button>失敗</button>
-            <button>＋</button>
-            <div class="effect-value">60%</div>
+            <button @click="handleSuccessValue1">成功</button>
+            <button @click="handleFailValue1">失敗</button>
+            <button @click="handleStepValue1">＋</button>
+            <div class="effect-value">{{ selectedEffectValue1 }}</div>
         </div>
         <div class="effect-input-container">
             <select v-model="selectedEffectId2" @change="handleChangeEffect1">
                 <option v-for="effectOption in effectOptions" :key="effectOption.id" :value="effectOption.id">{{ effectOption.name }}</option>
             </select>
-            <button>成功</button>
-            <button>失敗</button>
-            <button>＋</button>
-            <div class="effect-value">60%</div>
+            <button @click="handleSuccessValue2">成功</button>
+            <button @click="handleFailValue2">失敗</button>
+            <button @click="handleStepValue2">＋</button>
+            <div class="effect-value">{{ selectedEffectValue2 }}</div>
         </div>
         <div class="effect-input-container">
             <select v-model="selectedEffectId3" @change="handleChangeEffect1">
                 <option v-for="effectOption in effectOptions" :key="effectOption.id" :value="effectOption.id">{{ effectOption.name }}</option>
             </select>
-            <button>成功</button>
-            <button>失敗</button>
-            <button>＋</button>
-            <div class="effect-value">60%</div>
+            <button @click="handleSuccessValue3">成功</button>
+            <button @click="handleFailValue3">失敗</button>
+            <button @click="handleStepValue3">＋</button>
+            <div class="effect-value">{{ selectedEffectValue3 }}</div>
         </div>
         <div class="button-container">
             <button @click="handleDelete">削除</button>
@@ -56,6 +56,24 @@ import sets from '../constants/set.json';
 import setTypes from '../constants/set-type.json';
 import partType from '../constants/part-type.json';
 import effectType from '../constants/effect-type.json';
+import effectValueType from '../constants/effect-value-type.json';
+import { Decimal } from 'decimal.js';
+
+const getSuccessValue = (effectId) => {
+    const effectValueTypeId = effectType.find(i => i.id === +effectId)["effect-value-type"];
+    return effectValueType.find(i => i.id === effectValueTypeId).success;
+}
+
+const getFailValue = (effectId) => {
+    const effectValueTypeId = effectType.find(i => i.id === +effectId)["effect-value-type"];
+    const targetEffectValue = effectValueType.find(i => i.id === effectValueTypeId);
+    return new Decimal(targetEffectValue.success).plus(targetEffectValue.fail).toString();
+}
+
+const getStepValue = (effectId) => {
+    const effectValueTypeId = effectType.find(i => i.id === +effectId)["effect-value-type"];
+    return effectValueType.find(i => i.id === effectValueTypeId).step;
+}
 
 export default {
     props: ['partId', 'item', 'onDelete', 'onCancel', 'onOk'],
@@ -70,8 +88,11 @@ export default {
         const selectedSetId = ref(defaultSet != null ? defaultSet["set-id"] : "");
 
         const selectedEffectId1 = ref(effect1.effectId != null ? effectType.find(i => i.id === +effect1.effectId).id : "");
+        const selectedEffectValue1 = ref(effect1.value);
         const selectedEffectId2 = ref(effect2.effectId != null ? effectType.find(i => i.id === +effect2.effectId).id : "");
+        const selectedEffectValue2 = ref(effect2.value);
         const selectedEffectId3 = ref(effect3.effectId != null ? effectType.find(i => i.id === +effect3.effectId).id : "");
+        const selectedEffectValue3 = ref(effect3.value);
 
         const setOptions = computed(() =>  {
             if (selectedLevel.value === "") {
@@ -103,6 +124,70 @@ export default {
             props.onOk();
         }
 
+        const handleSuccessValue1 = () => {
+            if (selectedEffectId1.value == null) {
+                return;
+            }
+            selectedEffectValue1.value = getSuccessValue(selectedEffectId1.value);
+        }
+
+        const handleSuccessValue2 = () => {
+            if (selectedEffectId2.value == null) {
+                return;
+            }
+            selectedEffectValue2.value = getSuccessValue(selectedEffectId2.value);
+        }        
+
+        const handleSuccessValue3 = () => {
+            if (selectedEffectId3.value == null) {
+                return;
+            }
+            selectedEffectValue3.value = getSuccessValue(selectedEffectId3.value);
+        }
+
+        const handleFailValue1 = () => {
+            if (selectedEffectId1.value == null) {
+                return;
+            }
+            selectedEffectValue1.value = getFailValue(selectedEffectId1.value);
+        }
+
+        const handleFailValue2 = () => {
+            if (selectedEffectId2.value == null) {
+                return;
+            }
+            selectedEffectValue2.value = getFailValue(selectedEffectId2.value);
+        }        
+
+        const handleFailValue3 = () => {
+            if (selectedEffectId3.value == null) {
+                return;
+            }
+            selectedEffectValue3.value = getFailValue(selectedEffectId3.value);
+        }
+
+        const handleStepValue1 = () => {
+            if (selectedEffectId1.value == null) {
+                return;
+            }
+            selectedEffectValue1.value = new Decimal(selectedEffectValue1.value).plus(getStepValue(selectedEffectId1.value)).toString();
+        }
+
+        const handleStepValue2 = () => {
+            if (selectedEffectId2.value == null) {
+                return;
+            }
+            selectedEffectValue2.value = new Decimal(selectedEffectValue2.value).plus(getStepValue(selectedEffectId2.value)).toString();
+        }        
+
+        const handleStepValue3 = () => {
+            if (selectedEffectId3.value == null) {
+                return;
+            }
+            selectedEffectValue3.value = new Decimal(selectedEffectValue3.value).plus(getStepValue(selectedEffectId3.value)).toString();
+        }
+
+
         return {
             setOptions,
             levels,
@@ -118,8 +203,20 @@ export default {
             selectedSetId,
             selectedEffectId1,
             selectedEffectId2,
-            selectedEffectId3
-         }
+            selectedEffectId3,
+            selectedEffectValue1,
+            selectedEffectValue2,
+            selectedEffectValue3,
+            handleSuccessValue1,
+            handleSuccessValue2,
+            handleSuccessValue3,
+            handleFailValue1,
+            handleFailValue2,
+            handleFailValue3,
+            handleStepValue1,
+            handleStepValue2,
+            handleStepValue3
+        }
     }
 }
 </script>
