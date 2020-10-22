@@ -40,12 +40,9 @@
             <EffectInfo :effectTypeId="1" :effectValue="'45'"/>
         </div>
         <div v-if="isShowDialog" class="dialog-container">
-            <Edit 
-                :partId="targetPartId" 
-                :defaultLevel="defaultLevel"
-                :defaultEffect1="defaultEffect1" 
-                :defaultEffect2="defaultEffect2"  
-                :defaultEffect3="defaultEffect3"
+            <Edit
+                :partId="targetPartId"
+                :item="targetItem"
                 :onDelete="onDelete"
                 :onCancel="onCancel"
                 :onOk="onOk"
@@ -64,33 +61,11 @@ import ItemContainer from './ItemContainer';
 import EffectInfo from './EffectInfo';
 import Edit from './Edit';
 import { reactive, toRefs } from 'vue';
+import { getNewItem } from '../utils'
+// test data
+import { testData } from '../testdata';
 
-const testData = [
-    {
-        itemId: 0,
-        effect1: { effectId: 0, value: 10},
-        effect2: { effectId: 1, value: 10},
-        effect3: { effectId: 2, value: 10},
-        setTypeId: 0,
-        partTypeId: 0
-    },
-    {
-        itemId: 1,
-        effect1: { effectId: 3, value: 10},
-        effect2: { effectId: 4, value: 10},
-        effect3: { effectId: 5, value: 10},
-        setTypeId: 0,
-        partTypeId: 0
-    },
-    {
-        itemId: 2,
-        effect1: { effectId: 0, value: 10},
-        effect2: { effectId: 0, value: 10},
-        effect3: { effectId: 0, value: 10},
-        setTypeId: 0,
-        partTypeId: 0
-    }
-]
+
 
 export default {
     components: {
@@ -113,15 +88,11 @@ export default {
             selectedItems: [null, null, null, null, null],
             items: testData,
             isShowDialog: false,
-            targetPartId: "",
-            defaultEffect1: "",
-            defaultEffect2: "",
-            defaultEffect3: ""
+            targetPartId: undefined,
+            targetItem: undefined
         });
         const onSelectItem = (id, value) => {
             data.selectedItems[id] = value;
-            console.log(id, value);
-            console.log(data.selectedItems)
         }
         const clearSelectItems = () => {
             data.selectedItems = [null, null, null, null, null];
@@ -143,14 +114,6 @@ export default {
             clearSelectItems();
         }
 
-        const addClick = (partId) => {
-            data.targetPartId = partId;
-            data.isShowDialog = true;
-            data.defaultEffect1 = "";
-            data.defaultEffect2 = "";
-            data.defaultEffect3 = "";
-        }
-
         const onDelete = () => {
             // TODO: 実装
             data.isShowDialog = false;
@@ -165,8 +128,18 @@ export default {
             data.isShowDialog = false;
         }
 
-        const editItem = () => {
+        // 追加ボタンクリック
+        const addClick = (partId) => {
             data.isShowDialog = true;
+            data.targetItem = getNewItem(partId);
+            data.targetPartId = partId;
+        }
+
+        // 編集・削除操作の開始処理
+        const editItem = (item) => {
+            data.isShowDialog = true;
+            data.targetItem = item;
+            data.targetPartId = item.partTypeId;
         }
 
         return {
@@ -199,8 +172,7 @@ export default {
 
 .logout-button {
     height: 20px;
-    font-size: 16px;
-    transform: scale(calc(11 / 16));
+    font-size: 11px;
     background-color: lightblue;
 }
 

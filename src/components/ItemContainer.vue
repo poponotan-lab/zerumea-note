@@ -5,7 +5,7 @@
         </div>
         <div class="item-line-parent">
             <div class="item-line">
-                <Item v-for="item in items" 
+                <Item v-for="item in targetItems" 
                     :key="item.itemId" 
                     :partId="part.id" 
                     :onSelectItem="onSelectItem" 
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import { computed } from 'vue';
 import Item from './Item';
 
 export default {
@@ -42,8 +43,11 @@ export default {
             props.addClick(props.part.id);
         }
 
+        const targetItems = computed(() => props.items.filter(i => i.partTypeId === props.part.id))
+
         return {
-            handleClick: handleClick
+            handleClick: handleClick,
+            targetItems
         }
     }
 }

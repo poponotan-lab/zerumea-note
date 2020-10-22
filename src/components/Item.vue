@@ -15,6 +15,7 @@
 <script>
 import setType from "../constants/set-type.json";
 import effectType from "../constants/effect-type.json";
+import { computed } from 'vue';
 
 export default {
   props: {
@@ -28,12 +29,12 @@ export default {
     const handleClick = () => {
       props.onSelectItem(props.partId, props.item.itemId);
     };
-    const name = setType.find((i) => i.id === props.item.itemId).name;
-    const effect1 = effectType.find((i) => i.id === props.item.effect1.effectId);
-    const effect2 = effectType.find((i) => i.id === props.item.effect2.effectId);
-    const effect3 = effectType.find((i) => i.id === props.item.effect3.effectId);
+    const name = computed(() => setType.find((i) => i.id === props.item.setTypeId).name);
+    const effect1 = computed(() => effectType.find((i) => i.id === props.item.effect1.effectId));
+    const effect2 = computed(() => effectType.find((i) => i.id === props.item.effect2.effectId));
+    const effect3 = computed(() => effectType.find((i) => i.id === props.item.effect3.effectId));
     const handleDblClick = () => {
-        props.editItem();
+        props.editItem(props.item);
     }
     return {
       name: name,
@@ -62,16 +63,14 @@ export default {
 .item-name {
   min-width: 84px;
   overflow: hidden;
-  font-size: 16px;
-  transform: scale(calc(12 / 16));
+  font-size: 12px;
   padding-left: 4px;
   white-space: nowrap;
   height: 18px;
 }
 
 .item-value {
-  font-size: 16px;
-  transform: scale(calc(11 / 16));
+  font-size: 11px;
   text-align: right;
   padding-right: 4px;
   height: 14px;
