@@ -17,7 +17,6 @@ export default {
         const msg = ref("ゼルメアノート");
 
         const googleLogin = () => {
-            console.log(props.tryLogin);
             props.tryLogin();
             firebase.auth().signInWithRedirect(new firebase.auth.GoogleAuthProvider());
         }

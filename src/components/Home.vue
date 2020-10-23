@@ -29,16 +29,7 @@
                 :addClick="addClick"
                 />
         </div>
-        <div class="effects-container">
-            <EffectInfo :effectTypeId="0" :effectValue="'18'"/>
-            <EffectInfo :effectTypeId="1" :effectValue="'45'"/>
-            <EffectInfo :effectTypeId="2" :effectValue="'100％'"/>
-            <EffectInfo :effectTypeId="1" :effectValue="'45'"/>
-            <EffectInfo :effectTypeId="1" :effectValue="'45'"/>
-            <EffectInfo :effectTypeId="1" :effectValue="'45'"/>
-            <EffectInfo :effectTypeId="1" :effectValue="'45'"/>
-            <EffectInfo :effectTypeId="1" :effectValue="'45'"/>
-        </div>
+        <EffectInfoContainer :selectedItems="selectedItems" :items="items" />
         <div v-if="isShowDialog" class="dialog-container">
             <Edit
                 :partId="targetPartId"
@@ -62,8 +53,8 @@ import partType from '../constants/part-type.json';
 import sets from '../constants/set.json';
 import VCheckBox from './VCheckBox';
 import ItemContainer from './ItemContainer';
-import EffectInfo from './EffectInfo';
 import Edit from './Edit';
+import EffectInfoContainer from './EffectInfoContainer';
 import { computed, reactive, toRefs, onMounted } from 'vue';
 import { getNewItem } from '../utils'
 
@@ -83,8 +74,8 @@ export default {
     components: {
         VCheckBox,
         ItemContainer,
-        EffectInfo,
-        Edit
+        Edit,
+        EffectInfoContainer
     },
     props: ['user'],
     setup(props) {
@@ -95,8 +86,6 @@ export default {
                 .get()
                 .then( function(doc) {
                     if (doc.exists) {
-                        console.log("初期データです。");
-                        console.log(doc.data().items);
                         // 初期値データ取得
                         data.charas = doc.data().charas;
                         data.items = doc.data().items ?? [];
@@ -202,7 +191,6 @@ export default {
         }
 
         const onUpdate = (args) => {
-            // TODO: サーバ連携
             data.isShowDialog = false;
             const targetItem = data.items.find(i => i.itemId === data.targetItem.itemId);
             targetItem.effect1.effectId = args.effectId1;
@@ -287,18 +275,6 @@ export default {
     background: #ffffff;
     margin: 4px 12px;
     border-radius: 6px;
-}
-
-.effects-container {
-    background: #2e3192;
-    margin: 4px 12px;
-    padding: 12px;
-    border-radius: 6px;
-    border: white solid 4px;
-    height: 120px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
 }
 
 .main-container {

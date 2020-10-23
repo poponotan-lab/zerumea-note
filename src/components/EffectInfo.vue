@@ -1,7 +1,7 @@
 <template>
     <div class="effects-info">
         <div class="effects-title">{{name}}</div>
-        <div class="effects-value">{{value}}</div>
+        <div class="effects-value">{{effectValue}}</div>
     </div>
 </template>
 
@@ -11,10 +11,9 @@ import effectType from '../constants/effect-type.json';
 export default {
     props: ['effectTypeId', 'effectValue'],
     setup(props) {
-        const name = effectType.find(i => i.id === props.effectTypeId).name;
+        const name = effectType.find(i => i.id === +props.effectTypeId).name;
         return {
-            name: name,
-            value: props.effectValue
+            name: name
         }
     }
 }

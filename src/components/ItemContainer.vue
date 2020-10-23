@@ -36,7 +36,7 @@ export default {
         editItem: Function
     },
     components: {
-      Item
+        Item
     },
     setup(props) {
         const handleClick = () => {
