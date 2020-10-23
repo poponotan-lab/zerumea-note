@@ -42,9 +42,10 @@
             <div class="effect-value">{{ selectedEffectValue3 }}</div>
         </div>
         <div class="button-container">
-            <button @click="handleDelete">削除</button>
+            <button v-if="isNew === false" @click="handleDelete">削除</button>
             <button @click="handleCancel">キャンセル</button>
-            <button @click="handleOk">OK</button>
+            <button v-if="isNew" @click="handleCreate">OK</button>
+            <button v-if="isNew === false" @click="handleUpdate">OK</button>
         </div>
     </div>
 </template>
@@ -76,7 +77,7 @@ const getStepValue = (effectId) => {
 }
 
 export default {
-    props: ['partId', 'item', 'onDelete', 'onCancel', 'onOk'],
+    props: ['partId', 'item', 'onDelete', 'onCancel', 'onCreate', 'onUpdate', 'isNew'],
     setup(props) {
 
         const { setTypeId, effect1, effect2, effect3} = {...props.item};
@@ -120,8 +121,32 @@ export default {
         const handleCancel = () => {
             props.onCancel();
         }
-        const handleOk = () => {
-            props.onOk();
+
+        const handleCreate = () => {
+            props.onCreate(
+                {
+                    setTypeId: +selectedSetId.value,
+                    effectId1: selectedEffectId1.value,
+                    effectValue1: selectedEffectValue1.value,
+                    effectId2: selectedEffectId2.value,
+                    effectValue2: selectedEffectValue2.value,
+                    effectId3: selectedEffectId3.value,
+                    effectValue3: selectedEffectValue3.value
+                }
+            );
+        }
+
+        const handleUpdate = () => {
+            props.onUpdate(
+                {
+                    effectId1: selectedEffectId1,
+                    effectValue1: selectedEffectValue1,
+                    effectId2: selectedEffectId2,
+                    effectValue2: selectedEffectValue2,
+                    effectId3: selectedEffectId3,
+                    effectValue3: selectedEffectValue3
+                }
+            );
         }
 
         const handleSuccessValue1 = () => {
@@ -198,7 +223,8 @@ export default {
             effectOptions,
             handleDelete,
             handleCancel,
-            handleOk,
+            handleCreate,
+            handleUpdate,
             selectedLevel,
             selectedSetId,
             selectedEffectId1,

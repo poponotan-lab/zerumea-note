@@ -45,7 +45,9 @@
                 :item="targetItem"
                 :onDelete="onDelete"
                 :onCancel="onCancel"
-                :onOk="onOk"
+                :onCreate="onCreate"
+                :onUpdate="onUpdate"
+                :isNew="isNew"
                 />
         </div>
     </div>
@@ -53,6 +55,7 @@
 
 <script>
 import firebase from 'firebase/app';
+import "firebase/firestore";
 import levels from '../constants/levels.json';
 import jobSetType from '../constants/job-set-type.json';
 import partType from '../constants/part-type.json';
@@ -61,12 +64,20 @@ import VCheckBox from './VCheckBox';
 import ItemContainer from './ItemContainer';
 import EffectInfo from './EffectInfo';
 import Edit from './Edit';
-import { computed, reactive, toRefs } from 'vue';
+import { computed, reactive, toRefs, onMounted } from 'vue';
 import { getNewItem } from '../utils'
-// test data
-import { testData } from '../testdata';
 
+const saveItem = (uid, charas, items, ) => {
+    firebase.firestore()
+        .collection('/users')
+        .doc(uid)
+        .set({
+            charas: charas,
+            items: items
+        })
+}
 
+const initCharas = [{id: "0", name: "メインキャラ"}];
 
 export default {
     components: {
@@ -75,7 +86,33 @@ export default {
         EffectInfo,
         Edit
     },
-    setup() {
+    props: ['user'],
+    setup(props) {
+        onMounted (async () => {
+            await firebase.firestore()
+                .collection('/users')
+                .doc(props.user.uid)
+                .get()
+                .then( function(doc) {
+                    if (doc.exists) {
+                        console.log("初期データです。");
+                        console.log(doc.data().items);
+                        // 初期値データ取得
+                        data.charas = doc.data().charas;
+                        data.items = doc.data().items ?? [];
+                    } else {
+                        // 初期キャラ登録
+                        firebase.firestore()
+                            .collection('/users')
+                            .doc(props.user.uid)
+                            .set({ charas: initCharas });
+                        data.charas = initCharas;
+                    }
+                }).catch((error) => {
+                    alert("データ取得エラー", error);
+                })
+            
+        });
         const googleLogout = () => {
             firebase.auth().signOut().then(() => {
                 // 何もしない
@@ -87,10 +124,12 @@ export default {
             selectedLevels: [],
             selectedJobs: [],
             selectedItems: [null, null, null, null, null],
-            items: testData,
+            items: [],
             isShowDialog: false,
             targetPartId: undefined,
-            targetItem: undefined
+            targetItem: undefined,
+            isNew: false,
+            charas: []
         });
         const onSelectItem = (id, value) => {
             data.selectedItems[id] = value;
@@ -138,29 +177,55 @@ export default {
         }
 
         const onDelete = () => {
-            // TODO: 実装
+            // TODO: サーバ連携
             data.isShowDialog = false;
+            const targetIndex = data.items.findIndex(i => i.itemId === data.targetItem.itemId);
+            data.items.splice(targetIndex, 1);
+            saveItem(props.user.uid, { ...data.charas }, { ...data.items });
         }
 
         const onCancel = () => {
-            // TODO: 実装
             data.isShowDialog = false;
         }
-        const onOk = () => {
-            // TODO: 実装
+        const onCreate = (args) => {
+            // TODO: サーバ連携
             data.isShowDialog = false;
+            data.targetItem.setTypeId = args.setTypeId;
+            data.targetItem.effect1.effectId = args.effectId1;
+            data.targetItem.effect1.value = args.effectValue1;
+            data.targetItem.effect2.effectId = args.effectId2;
+            data.targetItem.effect2.value = args.effectValue2;
+            data.targetItem.effect3.effectId = args.effectId3;
+            data.targetItem.effect3.value = args.effectValue3;
+            data.items.push({...data.targetItem});
+            saveItem(props.user.uid, [ ...data.charas ], [ ...data.items ]);
+        }
+
+        const onUpdate = (args) => {
+            // TODO: サーバ連携
+            data.isShowDialog = false;
+            const targetItem = data.items.find(i => i.itemId === data.targetItem.itemId);
+            targetItem.effect1.effectId = args.effectId1;
+            targetItem.effect1.value = args.effectValue1;
+            targetItem.effect2.effectId = args.effectId2;
+            targetItem.effect2.value = args.effectValue2;
+            targetItem.effect3.effectId = args.effectId3;
+            targetItem.effect3.value = args.effectValue3;
+            saveItem(props.user.uid, { ...data.charas }, { ...data.items });
         }
 
         // 追加ボタンクリック
         const addClick = (partId) => {
             data.isShowDialog = true;
-            data.targetItem = getNewItem(partId);
+            data.isNew = true;
+            data.targetItem = getNewItem(undefined, partId);
             data.targetPartId = partId;
         }
 
         // 編集・削除操作の開始処理
         const editItem = (item) => {
             data.isShowDialog = true;
+            data.isNew = false;
             data.targetItem = item;
             data.targetPartId = item.partTypeId;
         }
@@ -177,7 +242,8 @@ export default {
             addClick,
             onDelete,
             onCancel,
-            onOk,
+            onCreate,
+            onUpdate,
             editItem,
             filteredItems
         }

@@ -6,9 +6,9 @@
     :class="{ active: item.itemId === selectedItemId }"
   >
     <div class="item-name">{{ name }}</div>
-    <div class="item-value">{{ effect1.name }}:{{item.effect1.value}}</div>
-    <div class="item-value">{{ effect2.name }}:{{item.effect2.value}}</div>
-    <div class="item-value">{{ effect3.name }}:{{item.effect3.value}}</div>
+    <div class="item-value">{{ effect1 ? effect1.name : "" }}:{{ item ? item.effect1.value : ""}}</div>
+    <div class="item-value">{{ effect2 ? effect2.name : "" }}:{{ item ? item.effect2.value : ""}}</div>
+    <div class="item-value">{{ effect3 ? effect3.name : "" }}:{{ item ? item.effect3.value : ""}}</div>
   </div>
 </template>
 
