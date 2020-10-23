@@ -1,8 +1,8 @@
 <template>
   <div
     class="item"
-    @click="handleClick"
     @dblclick="handleDblClick"
+    @click="handleClick"
     :class="{ active: item.itemId === selectedItemId }"
   >
     <div class="item-name">{{ name }}</div>
@@ -15,7 +15,7 @@
 <script>
 import setType from "../constants/set-type.json";
 import effectType from "../constants/effect-type.json";
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 
 export default {
   props: {
@@ -26,23 +26,35 @@ export default {
     editItem: Function
   },
   setup(props) {
+    const clicks = ref(0);
+    const timer = ref(null);
     const handleClick = () => {
-      props.onSelectItem(props.partId, props.item.itemId);
+      clicks.value++;
+      if (clicks.value === 1) {
+        props.onSelectItem(props.partId, props.item.itemId);
+        timer.value = setTimeout(() => {
+          clicks.value = 0;
+        }, 500)
+      } else {
+        props.editItem(props.item);
+        clicks.value = 0;
+      }
     };
     const name = computed(() => setType.find((i) => i.id === props.item.setTypeId).name);
     const effect1 = computed(() => effectType.find((i) => i.id === props.item.effect1.effectId));
     const effect2 = computed(() => effectType.find((i) => i.id === props.item.effect2.effectId));
     const effect3 = computed(() => effectType.find((i) => i.id === props.item.effect3.effectId));
-    const handleDblClick = () => {
-        props.editItem(props.item);
-    }
+
+    // const handleDblClick = () => {
+    //     console.log("ダブルクリックしたよ");
+    //     props.editItem(props.item);
+    // }
     return {
       name: name,
       effect1: effect1,
       effect2: effect2,
       effect3: effect3,
-      handleClick,
-      handleDblClick
+      handleClick
     };
   },
 };

@@ -44,7 +44,7 @@
         <div class="button-container">
             <button v-if="isNew === false" @click="handleDelete">削除</button>
             <button @click="handleCancel">キャンセル</button>
-            <button v-if="isNew" @click="handleCreate">OK</button>
+            <button v-if="isNew" @click="handleCreate" :disabled="selectedSetId=='' || selectedLevel==''">OK</button>
             <button v-if="isNew === false" @click="handleUpdate">OK</button>
         </div>
     </div>
@@ -127,11 +127,11 @@ export default {
                 {
                     setTypeId: +selectedSetId.value,
                     effectId1: selectedEffectId1.value,
-                    effectValue1: selectedEffectValue1.value,
+                    effectValue1: selectedEffectValue1.value  ?? "",
                     effectId2: selectedEffectId2.value,
-                    effectValue2: selectedEffectValue2.value,
+                    effectValue2: selectedEffectValue2.value ?? "",
                     effectId3: selectedEffectId3.value,
-                    effectValue3: selectedEffectValue3.value
+                    effectValue3: selectedEffectValue3.value ?? ""
                 }
             );
         }
@@ -150,66 +150,69 @@ export default {
         }
 
         const handleSuccessValue1 = () => {
-            if (selectedEffectId1.value == null) {
+            if (selectedEffectId1.value == null || selectedEffectId1.value == "") {
                 return;
             }
             selectedEffectValue1.value = getSuccessValue(selectedEffectId1.value);
         }
 
         const handleSuccessValue2 = () => {
-            if (selectedEffectId2.value == null) {
+            if (selectedEffectId2.value == null || selectedEffectId2.value == "") {
                 return;
             }
             selectedEffectValue2.value = getSuccessValue(selectedEffectId2.value);
         }        
 
         const handleSuccessValue3 = () => {
-            if (selectedEffectId3.value == null) {
+            if (selectedEffectId3.value == null || selectedEffectId3.value == "") {
                 return;
             }
             selectedEffectValue3.value = getSuccessValue(selectedEffectId3.value);
         }
 
         const handleFailValue1 = () => {
-            if (selectedEffectId1.value == null) {
+            if (selectedEffectId1.value == null || selectedEffectId1.value == "") {
                 return;
             }
             selectedEffectValue1.value = getFailValue(selectedEffectId1.value);
         }
 
         const handleFailValue2 = () => {
-            if (selectedEffectId2.value == null) {
+            if (selectedEffectId2.value == null || selectedEffectId2.value == "") {
                 return;
             }
             selectedEffectValue2.value = getFailValue(selectedEffectId2.value);
         }        
 
         const handleFailValue3 = () => {
-            if (selectedEffectId3.value == null) {
+            if (selectedEffectId3.value == null || selectedEffectId3.value == "") {
                 return;
             }
             selectedEffectValue3.value = getFailValue(selectedEffectId3.value);
         }
 
         const handleStepValue1 = () => {
-            if (selectedEffectId1.value == null) {
+            if (selectedEffectId1.value == null || selectedEffectId1.value == "") {
                 return;
             }
-            selectedEffectValue1.value = new Decimal(selectedEffectValue1.value).plus(getStepValue(selectedEffectId1.value)).toString();
+            const a = selectedEffectValue1.value ?? "0";
+            selectedEffectValue1.value = new Decimal(a).plus(getStepValue(selectedEffectId1.value)).toString();
         }
 
         const handleStepValue2 = () => {
-            if (selectedEffectId2.value == null) {
+            if (selectedEffectId2.value == null || selectedEffectId2.value == "") {
                 return;
             }
-            selectedEffectValue2.value = new Decimal(selectedEffectValue2.value).plus(getStepValue(selectedEffectId2.value)).toString();
+            const a = selectedEffectValue2.value ?? "0";
+            selectedEffectValue2.value = new Decimal(a).plus(getStepValue(selectedEffectId2.value)).toString();
         }        
 
         const handleStepValue3 = () => {
-            if (selectedEffectId3.value == null) {
+            if (selectedEffectId3.value == null || selectedEffectId3.value == "") {
                 return;
             }
-            selectedEffectValue3.value = new Decimal(selectedEffectValue3.value).plus(getStepValue(selectedEffectId3.value)).toString();
+            const a = selectedEffectValue3.value;
+            selectedEffectValue3.value = new Decimal(a).plus(getStepValue(selectedEffectId3.value)).toString();
         }
 
 

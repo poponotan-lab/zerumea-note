@@ -59,6 +59,7 @@ import { computed, reactive, toRefs, onMounted } from 'vue';
 import { getNewItem } from '../utils'
 
 const saveItem = (uid, charas, items, ) => {
+    console.log(items);
     firebase.firestore()
         .collection('/users')
         .doc(uid)
