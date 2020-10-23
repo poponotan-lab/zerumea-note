@@ -89,7 +89,17 @@ export default {
                     if (doc.exists) {
                         // 初期値データ取得
                         data.charas = doc.data().charas;
-                        data.items = doc.data().items ?? [];
+                        const itemsData = doc.data().items ?? [];
+                        if (itemsData.filter == null) {
+                            // 不正データ対応。あとで消すかも
+                            let arrayItems = [];
+                            Object.keys(itemsData).forEach((key) => {
+                                arrayItems.push(itemsData[key]);
+                            })
+                            data.items = arrayItems;
+                        } else {
+                            data.items = itemsData;
+                        }
                     } else {
                         // 初期キャラ登録
                         firebase.firestore()
@@ -200,7 +210,7 @@ export default {
             targetItem.effect2.value = args.effectValue2;
             targetItem.effect3.effectId = args.effectId3;
             targetItem.effect3.value = args.effectValue3;
-            saveItem(props.user.uid, { ...data.charas }, { ...data.items });
+            saveItem(props.user.uid, [ ...data.charas ], [ ...data.items ]);
         }
 
         // 追加ボタンクリック
