@@ -29,7 +29,7 @@
                 :addClick="addClick"
                 />
         </div>
-        <EffectInfoContainer :selectedItems="selectedItems" :items="items" />
+        <EffectInfoContainer :selectedItems="selectedItems" :items="filteredItems" />
         <div v-if="isShowDialog" class="dialog-container">
             <Edit
                 :partId="targetPartId"
