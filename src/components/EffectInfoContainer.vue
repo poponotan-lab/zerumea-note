@@ -22,7 +22,7 @@ export default {
             count: 0,
             effects: {}
         })
-        watch(props.selectedItems, () => {
+        watch( [props.selectedItems, props.items], () => {
             data.count++;
             // 
             const targetItems = props.items.filter(i => props.selectedItems.includes(i.itemId));
