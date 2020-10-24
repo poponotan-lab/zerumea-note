@@ -61,7 +61,9 @@ import effectValueType from '../constants/effect-value-type.json';
 import { Decimal } from 'decimal.js';
 
 const getSuccessValue = (effectId) => {
+    console.log("あたいけいさん");
     const effectValueTypeId = effectType.find(i => i.id === +effectId)["effect-value-type"];
+    console.log(`effectValueTypeId:${effectValueTypeId}`);
     return effectValueType.find(i => i.id === effectValueTypeId).success;
 }
 
@@ -74,6 +76,10 @@ const getFailValue = (effectId) => {
 const getStepValue = (effectId) => {
     const effectValueTypeId = effectType.find(i => i.id === +effectId)["effect-value-type"];
     return effectValueType.find(i => i.id === effectValueTypeId).step;
+}
+
+const isValid = (arg) => {
+    return arg !== "" && arg >= 0;
 }
 
 export default {
@@ -150,49 +156,49 @@ export default {
         }
 
         const handleSuccessValue1 = () => {
-            if (selectedEffectId1.value == null || selectedEffectId1.value == "") {
+            if (!isValid(selectedEffectId1.value)) {
                 return;
             }
             selectedEffectValue1.value = getSuccessValue(selectedEffectId1.value);
         }
 
         const handleSuccessValue2 = () => {
-            if (selectedEffectId2.value == null || selectedEffectId2.value == "") {
+            if (!isValid(selectedEffectId2.value)) {
                 return;
             }
             selectedEffectValue2.value = getSuccessValue(selectedEffectId2.value);
         }        
 
         const handleSuccessValue3 = () => {
-            if (selectedEffectId3.value == null || selectedEffectId3.value == "") {
+            if (!isValid(selectedEffectId3.value)) {
                 return;
             }
             selectedEffectValue3.value = getSuccessValue(selectedEffectId3.value);
         }
 
         const handleFailValue1 = () => {
-            if (selectedEffectId1.value == null || selectedEffectId1.value == "") {
+            if (!isValid(selectedEffectId1.value)) {
                 return;
             }
             selectedEffectValue1.value = getFailValue(selectedEffectId1.value);
         }
 
         const handleFailValue2 = () => {
-            if (selectedEffectId2.value == null || selectedEffectId2.value == "") {
+            if (!isValid(selectedEffectId2.value)) {
                 return;
             }
             selectedEffectValue2.value = getFailValue(selectedEffectId2.value);
         }        
 
         const handleFailValue3 = () => {
-            if (selectedEffectId3.value == null || selectedEffectId3.value == "") {
+            if (!isValid(selectedEffectId3.value)) {
                 return;
             }
             selectedEffectValue3.value = getFailValue(selectedEffectId3.value);
         }
 
         const handleStepValue1 = () => {
-            if (selectedEffectId1.value == null || selectedEffectId1.value == "") {
+            if (!isValid(selectedEffectId1.value)) {
                 return;
             }
             const a = selectedEffectValue1.value ?? "0";
@@ -200,7 +206,7 @@ export default {
         }
 
         const handleStepValue2 = () => {
-            if (selectedEffectId2.value == null || selectedEffectId2.value == "") {
+            if (!isValid(selectedEffectId2.value)) {
                 return;
             }
             const a = selectedEffectValue2.value ?? "0";
@@ -208,7 +214,7 @@ export default {
         }        
 
         const handleStepValue3 = () => {
-            if (selectedEffectId3.value == null || selectedEffectId3.value == "") {
+            if (!isValid(selectedEffectId3.value)) {
                 return;
             }
             const a = selectedEffectValue3.value;

@@ -19,12 +19,9 @@ export default {
     props: ['selectedItems', 'items'],
     setup (props) {
         const data = reactive({
-            count: 0,
             effects: {}
         })
-        watch( [props.selectedItems, props.items], () => {
-            data.count++;
-            // 
+        watch(() => {
             const targetItems = props.items.filter(i => props.selectedItems.includes(i.itemId));
 
             let effectMap = {};

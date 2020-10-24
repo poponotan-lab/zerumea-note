@@ -248,7 +248,7 @@
         "id": 25,
         "name": "開マホ",
         "parts": [
-            1
+            1, 2
         ],
         "suffix": "%",
         "effect-value-type": 4
