@@ -181,7 +181,7 @@ export default {
             data.isShowDialog = false;
             const targetIndex = data.items.findIndex(i => i.itemId === data.targetItem.itemId);
             data.items.splice(targetIndex, 1);
-            saveItem(props.user.uid, { ...data.charas }, { ...data.items });
+            saveItem(props.user.uid, [ ...data.charas ], [ ...data.items ]);
         }
 
         const onCancel = () => {
