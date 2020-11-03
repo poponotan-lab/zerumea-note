@@ -16,6 +16,18 @@
                 <ul>
                     <li>Googleアカウントでログインすると一覧画面が表示されます。</li>
                 </ul>
+            <h3>記録する！</h3>
+                <ul>
+                    <li>追加する</li>
+                    <div class="description">登録したい部位の右にある＋ボタンをタップする</div>
+                    <div class="description">表示されるポップアップに入力してOKボタンをタップする</div>
+                    <li>更新する</li>
+                    <div class="description">更新したい装備をダブルタップする</div>
+                    <div class="description">表示されるポップアップに入力してOKボタンをタップする</div>
+                    <li>削除する</li>
+                    <div class="description">削除したい装備をダブルタップする</div>
+                    <div class="description">表示されるポップアップの削除ボタンをタップする</div>
+                </ul>
             <h3>見る！</h3>
                 <ul>
                     <li>levelと職で絞り込んで見る</li>
@@ -25,18 +37,6 @@
                     <li>全身で効果をチェックする</li>
                     <div class="description">登録済アイテムを選択すると画面下に合計が表示される</div>
                     <img src="../assets/effect.png" />
-                </ul>
-            <h3>記録する！</h3>
-                <ul>
-                    <li>追加する</li>
-                    <div class="description">登録したい部位の右にある＋ボタンをクリックする</div>
-                    <div class="description">表示されるポップアップに入力してOKボタンクリック</div>
-                    <li>更新する</li>
-                    <div class="description">更新したい装備をダブルクリックする</div>
-                    <div class="description">表示されるポップアップに入力してOKボタンクリック</div>
-                    <li>削除する</li>
-                    <div class="description">削除したい装備をダブルクリックする</div>
-                    <div class="description">表示されるポップアップの削除ボタンクリック</div>
                 </ul>
         </div>
     </div>
